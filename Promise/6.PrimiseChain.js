@@ -1,0 +1,8 @@
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then((response) => {console.log(`1. then: ${response}`); return response})
+    .catch((error)=> console.log(`2. 첫 번째 then에서 일어난 에러${error}가 없어서 response를 그대로 리턴해요`))
+    .then((res)=>{console.log(`3. then: ${res}`); throw new Error('아 망했다!'); console.log('리턴 이후');})
+    .catch((e) =>{console.log(`4. 두 번째 then에서 일어난 에러 출력 =>  ${e}`); return e})
+    .finally(()=>{console.log('5. 중간에 finally를 쓰면 어떻게 될까요? => 무조건 출력')})
+    .then((re)=> {console.log(`6. 에러로 catch된 이후의 then은 리턴된 오류를 받아요. =>  ${re}`); return re})
+    .finally((u)=>{console.log(`7. finally의 콜백함수는 아무 인수를 받지 않아요. => ${u}`)})
